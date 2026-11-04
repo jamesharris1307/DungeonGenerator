@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonGenerator", "DungeonGenerator\DungeonGenerator.csproj", "{6BE5AAA7-391C-4183-B9B1-99A169325285}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonGenerator.Tests", "DungeonGenerator.Tests\DungeonGenerator.Tests.csproj", "{5FCA4EA3-C971-45AF-A051-C01BF0D0A1EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BE5AAA7-391C-4183-B9B1-99A169325285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE5AAA7-391C-4183-B9B1-99A169325285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE5AAA7-391C-4183-B9B1-99A169325285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE5AAA7-391C-4183-B9B1-99A169325285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FCA4EA3-C971-45AF-A051-C01BF0D0A1EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FCA4EA3-C971-45AF-A051-C01BF0D0A1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FCA4EA3-C971-45AF-A051-C01BF0D0A1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FCA4EA3-C971-45AF-A051-C01BF0D0A1EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
