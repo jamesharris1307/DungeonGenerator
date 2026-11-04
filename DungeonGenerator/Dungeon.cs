@@ -53,11 +53,9 @@ public class Dungeon
             {
                 newRoom.GenerateRoom(_map);
                 rooms.Add(newRoom);
-
                 return true;
             }
         }
-
         return false;
     }
 
@@ -77,7 +75,6 @@ public class Dungeon
                 return true;
             }
         }
-
         return false;
     }
 
@@ -149,7 +146,6 @@ public class Dungeon
             {
                 Console.Write(GetDisplayCharacter(_map[y, x]));
             }
-
             Console.WriteLine();
         }
     }

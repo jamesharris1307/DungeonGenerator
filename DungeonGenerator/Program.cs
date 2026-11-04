@@ -70,7 +70,6 @@ internal static class Program
     private static void CreateDungeon()
     {
         Console.Write("Enter dungeon width: ");
-
         if (!int.TryParse(Console.ReadLine(), out int width))
         {
             Console.WriteLine("Invalid width.");
@@ -78,7 +77,6 @@ internal static class Program
         }
 
         Console.Write("Enter dungeon height: ");
-
         if (!int.TryParse(Console.ReadLine(), out int height))
         {
             Console.WriteLine("Invalid height.");
@@ -99,7 +97,6 @@ internal static class Program
         }
 
         Console.Write("Enter room width: ");
-
         if (!int.TryParse(Console.ReadLine(), out int roomWidth))
         {
             Console.WriteLine("Invalid room width.");
@@ -107,7 +104,6 @@ internal static class Program
         }
 
         Console.Write("Enter room height: ");
-
         if (!int.TryParse(Console.ReadLine(), out int roomHeight))
         {
             Console.WriteLine("Invalid room height.");
@@ -133,7 +129,6 @@ internal static class Program
     private static void GenerateProceduralDungeon()
     {
         Console.Write("Enter dungeon width: ");
-
         if (!int.TryParse(Console.ReadLine(), out int width))
         {
             Console.WriteLine("Invalid width.");
@@ -141,7 +136,6 @@ internal static class Program
         }
 
         Console.Write("Enter dungeon height: ");
-
         if (!int.TryParse(Console.ReadLine(), out int height))
         {
             Console.WriteLine("Invalid height.");
@@ -149,7 +143,6 @@ internal static class Program
         }
 
         Console.Write("Enter number of rooms: ");
-
         if (!int.TryParse(Console.ReadLine(), out int roomCount))
         {
             Console.WriteLine("Invalid room count.");
@@ -159,7 +152,6 @@ internal static class Program
         ProceduralDungeonGenerator generator = new ProceduralDungeonGenerator();
 
         _dungeon = generator.Generate(width, height, roomCount);
-
         _dungeon.Display();
     }
 
