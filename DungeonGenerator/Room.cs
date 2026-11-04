@@ -1,13 +1,7 @@
 namespace DungeonGenerator;
 
-public class Room
+public class Room(int width, int height)
 {
-    public int Width { get; }
-    public int Height { get; }
-    
-    public Room(int width, int height)
-    {
-        this.Width = width;
-        this.Height = height;
-    }
+    public int Width { get; } = width;
+    public int Height { get; } = height;
 }
