@@ -22,7 +22,8 @@ internal static class Program
         Console.WriteLine("1. Create a Dungeon");
         Console.WriteLine("2. Place a Room");
         Console.WriteLine("3. Generate Procedural Dungeon");
-        Console.WriteLine("4. Quit the program");
+        Console.WriteLine("4. Clear Console");
+        Console.WriteLine("5. Quit the program");
     }
 
     private static void ProcessMenuChoice()
@@ -50,8 +51,12 @@ internal static class Program
             // Going to allow the user to configure the symbols representing the map
             // boundaries, empty cells and walls.
 
-            // Exit Game.
             case 4:
+                ClearConsole();
+                break;
+            
+            // Exit Game.
+            case 5:
                 QuitProgram();
                 break;
 
@@ -158,6 +163,11 @@ internal static class Program
         _dungeon.Display();
     }
 
+    private static void ClearConsole()
+    {
+        Console.Clear();
+    }
+    
     // Exit Game.
     private static void QuitProgram()
     {
