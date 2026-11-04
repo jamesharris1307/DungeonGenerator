@@ -3,7 +3,7 @@ namespace DungeonGenerator;
 public class Dungeon
 {
     private readonly CellType[,] _map;
-    private readonly List<Room> rooms = new();
+    private readonly List<Room> _rooms = new();
     private readonly Random _random = new();
 
     // Create the dungeon by assigning cell types to the grid.
@@ -52,7 +52,9 @@ public class Dungeon
             if (!Overlaps(newRoom))
             {
                 newRoom.GenerateRoom(_map);
-                rooms.Add(newRoom);
+                
+                // After room generated add to rooms list
+                _rooms.Add(newRoom);
                 return true;
             }
         }
@@ -62,7 +64,7 @@ public class Dungeon
     // Check if a room overlaps another room.
     private bool Overlaps(Room newRoom)
     {
-        foreach (Room existingRoom in rooms)
+        foreach (Room existingRoom in _rooms)
         {
             bool overlaps =
                 newRoom.X < existingRoom.X + existingRoom.Width &&
@@ -81,10 +83,10 @@ public class Dungeon
     // Connect rooms together using an L-shaped corridor.
     public void ConnectRooms()
     {
-        for (int i = 0; i < rooms.Count - 1; i++)
+        for (int i = 0; i < _rooms.Count - 1; i++)
         {
-            Room firstRoom = rooms[i];
-            Room secondRoom = rooms[i + 1];
+            Room firstRoom = _rooms[i];
+            Room secondRoom = _rooms[i + 1];
 
             int startX = firstRoom.CentreX;
             int startY = firstRoom.CentreY;
@@ -98,12 +100,12 @@ public class Dungeon
 
             for (int x = minX; x <= maxX; x++)
             {
-                if (_map[startY, x] == CellType.Empty)
-                {
-                    _map[startY - 1, x] = CellType.CorridorWall;
-                    _map[startY, x] = CellType.CorridorFloor;
-                    _map[startY + 1, x] = CellType.CorridorWall;
-                }
+                // Place the corridor floor through the centre.
+                CarveCorridorFloor(startY, x);
+
+                // Place corridor walls above and below.
+                PlaceCorridorWall(startY - 1, x);
+                PlaceCorridorWall(startY + 1, x);
             }
 
             // Vertical corridor.
@@ -112,13 +114,33 @@ public class Dungeon
 
             for (int y = minY; y <= maxY; y++)
             {
-                if (_map[y, endX] == CellType.Empty)
-                {
-                    _map[y, endX - 1] = CellType.CorridorWall;
-                    _map[y, endX] = CellType.CorridorFloor;
-                    _map[y, endX + 1] = CellType.CorridorWall;
-                }
+                // Place the corridor floor through the centre.
+                CarveCorridorFloor(y, endX);
+
+                // Place corridor walls to the left and right.
+                PlaceCorridorWall(y, endX - 1);
+                PlaceCorridorWall(y, endX + 1);
             }
+        }
+    }
+
+    // Create a corridor floor without overwriting room floors or dungeon boundaries.
+    private void CarveCorridorFloor(int y, int x)
+    {
+        if (_map[y, x] == CellType.Empty ||
+            _map[y, x] == CellType.RoomWall ||
+            _map[y, x] == CellType.CorridorWall)
+        {
+            _map[y, x] = CellType.CorridorFloor;
+        }
+    }
+
+    // Only place corridor walls in empty cells.
+    private void PlaceCorridorWall(int y, int x)
+    {
+        if (_map[y, x] == CellType.Empty)
+        {
+            _map[y, x] = CellType.CorridorWall;
         }
     }
 
