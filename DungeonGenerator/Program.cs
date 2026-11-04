@@ -1,79 +1,167 @@
-﻿namespace DungeonGenerator;
+﻿
+namespace DungeonGenerator;
 
 internal static class Program
 {
+    private static bool _running = true;
+    private static Dungeon? _dungeon;
+
     private static void Main()
     {
-        const bool running = true;
-        Dungeon? dungeon = null;
-
-        while (running)
+        while (_running)
         {
-            Console.WriteLine("========== Dungeon Generator ==========");
-            Console.WriteLine("---------------------------------------");
-            Console.WriteLine("1. Create a Dungeon");
-            Console.WriteLine("2. Place a Room");
-            Console.WriteLine("3. Quit the program");
-
-            var choice = Convert.ToInt32(Console.ReadLine());
-        
-            switch (choice)
-            {
-                // Create a Dungeon following user parameters
-                case 1:
-                    Console.Write("Enter dungeon width: ");
-                    int width = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Enter dungeon height: ");
-                    int height = Convert.ToInt32(Console.ReadLine());
-
-                    dungeon = new Dungeon(width, height);
-
-                    dungeon.Display();
-                    break;
-            
-                // Create and Place a Room
-                case 2:
-                    if (dungeon is null)
-                    {
-                        Console.WriteLine("Create a dungeon first.");
-                        break;
-                    }
-                    
-                    Console.Write("Enter room width: ");
-                    int roomWidth = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Enter room height: ");
-                    int roomHeight = Convert.ToInt32(Console.ReadLine());
-                    
-                    bool placed = dungeon.PlaceRandomRoom(roomWidth, roomHeight);
-
-                    if (placed)
-                    {
-                        Console.WriteLine("\nRoom successfully placed!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nCould not find a suitable position.");
-                    }
-
-                    dungeon.Display();
-                    break;
-            
-                case 3:
-                    // Going to allow the user to congigure the symbols representing the map
-                    // boundaries, empty cells and walls
-                
-                // Exit Game
-                case 4:
-                    Console.WriteLine("Exiting . . .");
-                    Environment.Exit(0);
-                    break;
-                
-                default:
-                    Console.WriteLine("Invalid choice");
-                    break;
-            }
+            DisplayMenu();
+            ProcessMenuChoice();
         }
+    }
+    
+    private static void DisplayMenu()
+    {
+        Console.WriteLine("========== Dungeon Generator ==========");
+        Console.WriteLine("---------------------------------------");
+        Console.WriteLine("1. Create a Dungeon");
+        Console.WriteLine("2. Place a Room");
+        Console.WriteLine("3. Generate Procedural Dungeon");
+        Console.WriteLine("4. Quit the program");
+    }
+
+    private static void ProcessMenuChoice()
+    {
+        if (!int.TryParse(Console.ReadLine(), out int choice))
+        {
+            Console.WriteLine("Please enter a valid number.");
+            return;
+        }
+
+        switch (choice)
+        {
+            case 1:
+                CreateDungeon();
+                break;
+
+            case 2:
+                PlaceRoom();
+                break;
+
+            case 3:
+                GenerateProceduralDungeon();
+                break;
+
+            // Going to allow the user to configure the symbols representing the map
+            // boundaries, empty cells and walls.
+
+            // Exit Game.
+            case 4:
+                QuitProgram();
+                break;
+
+            default:
+                Console.WriteLine("Invalid choice.");
+                break;
+        }
+    }
+
+    // Create a dungeon following user parameters.
+    private static void CreateDungeon()
+    {
+        Console.Write("Enter dungeon width: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int width))
+        {
+            Console.WriteLine("Invalid width.");
+            return;
+        }
+
+        Console.Write("Enter dungeon height: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int height))
+        {
+            Console.WriteLine("Invalid height.");
+            return;
+        }
+
+        _dungeon = new Dungeon(width, height);
+        _dungeon.Display();
+    }
+
+    // Create and Place a Room.
+    private static void PlaceRoom()
+    {
+        if (_dungeon is null)
+        {
+            Console.WriteLine("Create a dungeon first.");
+            return;
+        }
+
+        Console.Write("Enter room width: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int roomWidth))
+        {
+            Console.WriteLine("Invalid room width.");
+            return;
+        }
+
+        Console.Write("Enter room height: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int roomHeight))
+        {
+            Console.WriteLine("Invalid room height.");
+            return;
+        }
+
+        bool placed = _dungeon.PlaceRandomRoom(roomWidth, roomHeight);
+
+        if (placed)
+        {
+            Console.WriteLine("\nRoom successfully placed!");
+        }
+        else
+        {
+            Console.WriteLine("\nCould not find a suitable position.");
+        }
+
+        _dungeon.ConnectRooms();
+        _dungeon.Display();
+    }
+
+    // Generate a procedural dungeon.
+    private static void GenerateProceduralDungeon()
+    {
+        Console.Write("Enter dungeon width: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int width))
+        {
+            Console.WriteLine("Invalid width.");
+            return;
+        }
+
+        Console.Write("Enter dungeon height: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int height))
+        {
+            Console.WriteLine("Invalid height.");
+            return;
+        }
+
+        Console.Write("Enter number of rooms: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int roomCount))
+        {
+            Console.WriteLine("Invalid room count.");
+            return;
+        }
+
+        ProceduralDungeonGenerator generator = new ProceduralDungeonGenerator();
+
+        _dungeon = generator.Generate(width, height, roomCount);
+
+        _dungeon.Display();
+    }
+
+    // Exit Game.
+    private static void QuitProgram()
+    {
+        Console.WriteLine("Exiting...");
+        _running = false;
     }
 }
