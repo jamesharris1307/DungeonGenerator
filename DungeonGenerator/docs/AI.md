@@ -86,18 +86,52 @@ then iterates through each position using a for loop. It checks whether each
 cell is empty before assigning corridor walls and floors. The same process is 
 repeated vertically using the Y coordinates.
 
-### Suggestion 2:
+### Suggestion 2: Docker configuration and troubleshooting
 
-I utilised ChatGPT to assist in the Docker error when creating a docker image. The AI
-assistant was able to recommend a different version of the Microsoft SDK that allows the
-docker file to build.
+I utilised ChatGPT to help investigate an error encountered when building my 
+Docker image. The initial Dockerfile used a different version of the 
+Microsoft .NET SDK image, which resulted in a build error. ChatGPT suggested 
+changing the SDK image version to `10.0.301`, which resolved the issue and allowed 
+the Docker image to build successfully.
 
-Also, there was an issue with Docker Desktop where when I created a container that didn't 
-allow input the Console.ReadLine defaulted to null and caused the main menu to just loop
-indefinetly.
+I also encountered an issue with Docker Desktop when creating and running a container. 
+The container was not configured to accept interactive input, meaning that 
+`Console.ReadLine()` returned `null`. This caused the application's main menu to 
+repeatedly display because it was unable to receive user input.
+
+I investigated the issue and identified that the problem was with how the container 
+was being launched rather than the application's menu logic. I corrected the 
+container configuration to allow interactive input. 
+
+### Suggestion 3:
+
+When looking at how to create unit tests in C# .NET ChatGPT recommended that I use XUnit
+as seen [here](https://xunit.net/?tabs=cs). I initially was going to integrate XUnit
+as a dependency in this project however earlier when I was creating my project in 
+JetBrains Rider I noticed that I could create a Test project and after doing this
+I found out that it came with NUnit already as a dependency and already configured
+for my use. So even though XUnit seemed perfectly reasnoble to utilise in this
+prject I went with NUnit because it was the simpler option.
 
 ## How verified AI suggestions
 
-- Checking Documentation [Here]()
+- Checking Documentation
 - Validating through Unit Test
 - Validating through manual testing by building the project and running the .exe
+- Getting the AI to explain all their suggestions step by step.
+
+## Overall Conclusion:
+
+Using AI as a tool to help with the development of this project was mostly helpful. I
+prefer using an AI agent where it doesn't have access to my code base but can just
+make suggestions that I can read through and decide on my own what changes to make.
+Which is what I did here. I had a browser open with ChatGPT on and I asked it for
+suggestions as detailed above.
+
+One thing to note that many of the AI's suggestions were later changed in favour of
+a better solution. For example the changes suggested for the Docker Image being run
+without input caused an endless loop, the AI suggestions caused problems with the main
+applicaiton just running in the IDE so they were removed and reverted back to a stable
+version. Also, the AI suggestion to utilise XUnit was more overhead than just using
+NUnit which was already pre-configured with JetBrains Rider. I think this was missed
+by the AI because it didn't have a reference to what IDE I was using.
