@@ -21,6 +21,12 @@ the syntax I needed to implement on stack overflow [here](https://stackoverflow.
 Learnt about primary constructors when implementing the room propteris and constructor logic, 
 read about them [here](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors).
 
+Decided to implement the symbol rendering logic using an enum, came across a
+problem of defining the symbols in all the classes when it would be much
+better to define the symbols reference in an enum and then create a renderer
+class in order to render the dungeon Researched enums in c# 
+[here](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum).
+
 ---
 
 ## Resources Used
@@ -126,6 +132,21 @@ The issue occurred because Convert.ToInt32() attempted to convert an empty strin
 I found int.TryParse() as an alternative [here](https://learn.microsoft.com/en-us/dotnet/api/system.int32.tryparse?view=net-10.0).
 This method allows the application to check whether user input can be converted successfully before processing it.
 I implemented this fix everywhere where appropriate 
+
+### Problem 7: Resolving a .NET SDK Error During Docker Builds
+
+While configuring Docker to build and run the application, I encountered an error during the `dotnet restore` stage:
+
+```text
+Failed to map file. mmap(/usr/share/dotnet/sdk/10.0.403/dotnet.runtimeconfig.json) failed with error 22
+```
+
+Initially, I suspected that the problem was related to my Dockerfile or project configuration. However, after testing 
+the restore operation locally, I confirmed that it completed successfully outside Docker. To investigate further, I 
+ran `dotnet --info` directly inside the official .NET SDK Docker image. This produced the same error, indicating that 
+the issue was not specific to my application. I then tested an earlier SDK image, `mcr.microsoft.com/dotnet/sdk:10.0.301`, 
+which ran successfully without producing the error. I therefore changed the SDK version in my Dockerfile from `10.0` to 
+`10.0.301`. This resolved the SDK startup issue and allowed me to continue investigating the Docker build process.
 
 ---
 
