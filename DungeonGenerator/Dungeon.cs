@@ -1,9 +1,17 @@
 namespace DungeonGenerator;
 
+// This Class handles:
+/*
+ - Creating the Dungeon Map and initialising it 
+ - Creating the Room objects 
+ - Connecting two Rooms with a corridor with an L-Shaped Design
+ - Checking for Room overlaps
+ */
+
 public class Dungeon
 {
     private readonly CellType[,] _map;
-    private readonly List<Room> _rooms = new(); // Data Structure to store all the created Rooms
+    private readonly List<Room> _rooms = new();
     private readonly Random _random = new();
 
     // Create the dungeon by assigning cell types to the grid
@@ -11,17 +19,22 @@ public class Dungeon
     {
         _map = new CellType[height, width];
 
+        // Loop through the rows
         for (int y = 0; y < height; y++)
         {
+            // Loop through the columns
             for (int x = 0; x < width; x++)
             {
+                // Detect a boundary cell
                 if (y == 0 || y == height - 1 ||
                     x == 0 || x == width - 1)
                 {
+                    // Assign Room Wall Cell Type
                     _map[y, x] = CellType.Boundary;
                 }
                 else
                 {
+                    // Assign Room Floor Cell Type
                     _map[y, x] = CellType.Empty;
                 }
             }
@@ -44,6 +57,7 @@ public class Dungeon
         // Attempt to find a suitable position
         for (int attempt = 0; attempt < 100; attempt++)
         {
+            // Generate random coordinates within the dungeon boundaries.
             int x = _random.Next(1, dungeonWidth - width);
             int y = _random.Next(1, dungeonHeight - height);
 
@@ -53,7 +67,7 @@ public class Dungeon
             {
                 newRoom.GenerateRoom(_map);
                 
-                // After room generated add to rooms list
+                // After room generated successfully add to rooms list
                 _rooms.Add(newRoom);
                 return true;
             }

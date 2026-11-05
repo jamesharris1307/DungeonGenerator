@@ -1,6 +1,8 @@
 
 namespace DungeonGenerator;
 
+// This Class handles the procedural generation of a dungeon
+
 public class ProceduralDungeonGenerator
 {
     private readonly Random _random = new();

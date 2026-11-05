@@ -1,6 +1,10 @@
 ﻿
 namespace DungeonGenerator;
 
+// This class acts as the entry point for the application
+// It offers the user the main menu and accepts input from 
+// the user in the form of integers.
+
 internal static class Program
 {
     private static bool _running = true;
