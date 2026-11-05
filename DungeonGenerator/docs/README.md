@@ -121,7 +121,45 @@ ProceduralDungeonGenerator:
 
 Docker File
 
-Tests
+### Tests
+
+The project uses NUnit to verify that the individual classes behave as expected. Each test follows the Arrange, Act, Assert (AAA) pattern:
+- Arrange: Prepare the objects and data required for the test.
+- Act: Execute the method being tested.
+- Assert: Compare the actual result against the expected result.
+
+#### Dungeon Tests
+The DungeonTests class verifies that a dungeon is initialised correctly and that its underlying grid has the expected dimensions and cell types.
+- Constructor_SetsCorrectDimensions – Creates a dungeon with specified width and height, then verifies that the Width and Height properties return the correct values.
+- Constructor_SetsCorrectInterior – Iterates through the interior cells of the dungeon and verifies that each is initially assigned CellType.Empty.
+- Constructor_SetsCorrectBoundary – Verifies that the outermost rows and columns are assigned CellType.Boundary, ensuring the dungeon has a correctly initialised perimeter.
+
+#### Corridor Tests
+The CorridorTests class verifies the behaviour of the ConnectRooms() method, which creates L-shaped corridors between rooms.
+- ConnectRooms_CreatesCorridorFloors – Verifies that connecting rooms creates cells assigned CellType.CorridorFloor, representing the walkable corridor between rooms.
+- ConnectRooms_CreatesCorridorWalls – Verifies that corridor walls are generated alongside the corridor floor, using CellType.CorridorWall.
+- ConnectRooms_DoesNotOverwriteBoundaries – Checks that the dungeon's outer boundary cells remain unchanged when corridor generation is performed.
+- ConnectRooms_DoesNotThrow_WhenNoRoomsExist – Verifies that calling ConnectRooms() on a dungeon without any rooms does not cause an exception.
+- ConnectRooms_DoesNotThrow_WhenOneRoomExists – Verifies that calling ConnectRooms() when only one room exists does not cause an exception. Since there is no second room to 
+connect, no corridor should be required.
+
+#### Room Tests
+The RoomTests class verifies that rooms store their properties correctly and generate the expected walls and floors within the dungeon grid.
+- Constructor_SetsCorrectCoordinates – Verifies that the room stores the supplied X and Y coordinates correctly.
+- Constructor_SetsCorrectDimensions – Verifies that the room stores the supplied width and height correctly.
+- CentreX_ReturnsCorrectCentreCoordinate – Checks that the calculated horizontal centre coordinate is correct based on the room's X position and width.
+- CentreY_ReturnsCorrectCentreCoordinate – Checks that the calculated vertical centre coordinate is correct based on the room's Y position and height.
+- GenerateRoom_CreatesCorrectWalls – Generates a room on a test grid and verifies that its top, bottom, left and right edges are assigned CellType.RoomWall.
+- GenerateRoom_CreatesCorrectFloor – Verifies that the interior cells of a generated room are assigned CellType.RoomFloor, ensuring the room has a walkable interior.
+
+#### Dungeon Renderer Tests
+The DungeonRendererTests class verifies that the DungeonRenderer correctly converts dungeon cell types into their corresponding ASCII characters and displays the dungeon in the console.
+
+- Display_RendersDungeonCorrectly – Creates a 5 × 5 dungeon and captures the console output using StringWriter and Console.SetOut(). It then compares the captured output against an expected 
+ASCII representation. This verifies that boundary cells are displayed as #, empty cells are displayed as spaces, and the dungeon is rendered with the correct rows, columns and line endings.
+
+The test also uses a try/finally block to restore the original console output and dispose of the StringWriter, ensuring that the test cleans up correctly even if an assertion fails.
+
 
 ## What I would improve:
 
