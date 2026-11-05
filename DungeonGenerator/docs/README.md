@@ -101,6 +101,7 @@ If you have Docker Desktop installed and running:
    docker run -it --rm dungeon-generator
    ```
 
+Be careful not to run the container without input enabled as the menu will just loop forever.
 
 ## How it Works
 
@@ -117,6 +118,10 @@ Corridor Class:
 CellType:
 
 ProceduralDungeonGenerator:
+
+Docker File
+
+Tests
 
 ## What I would improve:
 
@@ -135,4 +140,6 @@ can watch their dungeon get created in real time.
 
 I originally wanted to create an automated email workflow in Python
 however I already did something very similar as part of a personal 
-project. I decided to showcase 
+project. I decided to listen to what the technical assessment brief
+mentioned which was to try something I haven't used before and create
+something I find interesting.

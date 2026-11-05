@@ -27,6 +27,10 @@ better to define the symbols reference in an enum and then create a renderer
 class in order to render the dungeon Researched enums in c# 
 [here](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum).
 
+Needed to learn about Unit Testing in C#
+- AAA pattern
+- Using Nunit 
+
 ---
 
 ## Resources Used
@@ -42,8 +46,6 @@ The following resources were used to support my research and development:
 ---
 
 ## Problems Encountered
-
-
 
 ### Problem 1: Removing Rider Configuration Files from Git
 
