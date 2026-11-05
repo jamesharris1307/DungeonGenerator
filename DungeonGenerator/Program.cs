@@ -5,6 +5,7 @@ internal static class Program
 {
     private static bool _running = true;
     private static Dungeon? _dungeon;
+    private static DungeonRenderer _renderer = new DungeonRenderer();
 
     private static void Main()
     {
@@ -49,7 +50,7 @@ internal static class Program
                 break;
 
             // Going to allow the user to configure the symbols representing the map
-            // boundaries, empty cells and walls.
+            // boundaries, empty cells and walls
 
             case 4:
                 ClearConsole();
@@ -66,7 +67,7 @@ internal static class Program
         }
     }
 
-    // Create a dungeon following user parameters.
+    // Create a dungeon following user parameters
     private static void CreateDungeon()
     {
         Console.Write("Enter dungeon width: ");
@@ -84,10 +85,10 @@ internal static class Program
         }
 
         _dungeon = new Dungeon(width, height);
-        _dungeon.Display();
+        _renderer.Display(_dungeon);
     }
 
-    // Create and Place a Room.
+    // Create and Place a Room
     private static void PlaceRoom()
     {
         if (_dungeon is null)
@@ -122,10 +123,10 @@ internal static class Program
         }
 
         _dungeon.ConnectRooms();
-        _dungeon.Display();
+        _renderer.Display(_dungeon);
     }
 
-    // Generate a procedural dungeon.
+    // Generate a procedural dungeon
     private static void GenerateProceduralDungeon()
     {
         Console.Write("Enter dungeon width: ");
@@ -152,7 +153,7 @@ internal static class Program
         ProceduralDungeonGenerator generator = new ProceduralDungeonGenerator();
 
         _dungeon = generator.Generate(width, height, roomCount);
-        _dungeon.Display();
+        _renderer.Display(_dungeon);
     }
 
     private static void ClearConsole()
@@ -160,7 +161,7 @@ internal static class Program
         Console.Clear();
     }
     
-    // Exit Game.
+    // Exit Game
     private static void QuitProgram()
     {
         Console.WriteLine("Exiting...");
