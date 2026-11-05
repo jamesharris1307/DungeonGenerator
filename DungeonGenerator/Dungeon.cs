@@ -3,7 +3,7 @@ namespace DungeonGenerator;
 public class Dungeon
 {
     private readonly CellType[,] _map;
-    private readonly List<Room> _rooms = new();
+    private readonly List<Room> _rooms = new(); // Data Structure to store all the created Rooms
     private readonly Random _random = new();
 
     // Create the dungeon by assigning cell types to the grid.
@@ -94,7 +94,7 @@ public class Dungeon
             int endX = secondRoom.CentreX;
             int endY = secondRoom.CentreY;
 
-            // Horizontal corridor.
+            // Horizontal corridor logic.
             int minX = Math.Min(startX, endX);
             int maxX = Math.Max(startX, endX);
 
@@ -108,7 +108,7 @@ public class Dungeon
                 PlaceCorridorWall(startY + 1, x);
             }
 
-            // Vertical corridor.
+            // Vertical corridor logic .
             int minY = Math.Min(startY, endY);
             int maxY = Math.Max(startY, endY);
 
@@ -144,31 +144,12 @@ public class Dungeon
         }
     }
 
-    // Convert cell types into their corresponding ASCII characters.
-    private char GetDisplayCharacter(CellType cell)
-    {
-        return cell switch
-        {
-            CellType.Empty => ' ',
-            CellType.Boundary => '#',
-            CellType.RoomWall => '#',
-            CellType.RoomFloor => '.',
-            CellType.CorridorWall => '#',
-            CellType.CorridorFloor => '.',
-            _ => '?'
-        };
-    }
+    public int Width => _map.GetLength(1);
 
-    // Display the dungeon.
-    public void Display()
+    public int Height => _map.GetLength(0);
+
+    public CellType GetCell(int y, int x)
     {
-        for (int y = 0; y < _map.GetLength(0); y++)
-        {
-            for (int x = 0; x < _map.GetLength(1); x++)
-            {
-                Console.Write(GetDisplayCharacter(_map[y, x]));
-            }
-            Console.WriteLine();
-        }
+        return _map[y, x];
     }
 }
