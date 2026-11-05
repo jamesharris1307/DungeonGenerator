@@ -29,7 +29,7 @@ public class Dungeon
                 if (y == 0 || y == height - 1 ||
                     x == 0 || x == width - 1)
                 {
-                    // Assign Room Wall Cell Type
+                    // Assign Room Boundary Cell Type
                     _map[y, x] = CellType.Boundary;
                 }
                 else
