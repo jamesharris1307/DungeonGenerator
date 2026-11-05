@@ -33,13 +33,6 @@ internal static class Program
 
     private static void ProcessMenuChoice()
     {
-        string? input = Console.ReadLine();
-
-        if (input == null)
-        {
-            return;
-        }
-        
         if (!int.TryParse(Console.ReadLine(), out int choice))
         {
             Console.WriteLine("Please enter a valid number.");
