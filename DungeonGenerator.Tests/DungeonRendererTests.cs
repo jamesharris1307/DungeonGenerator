@@ -2,6 +2,7 @@ namespace DungeonGenerator.Tests;
 
 public class DungeonRendererTests
 {
+    // Test the renderer assigns the correct symbol for the floor type
     [Test]
     public void Display_RendersDungeonCorrectly()
     {

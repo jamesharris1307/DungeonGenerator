@@ -11,7 +11,7 @@ public class ProceduralDungeonGenerator
 
         for (int i = 0; i < roomCount; i++)
         {
-            // Generate random room dimensions.
+            // Generate random room dimensions
             int roomWidth = _random.Next(5, 15);
             int roomHeight = _random.Next(5, 15);
 
@@ -24,7 +24,7 @@ public class ProceduralDungeonGenerator
             }
         }
 
-        // Connect the generated rooms.
+        // Connect the generated rooms
         dungeon.ConnectRooms();
         return dungeon;
     }

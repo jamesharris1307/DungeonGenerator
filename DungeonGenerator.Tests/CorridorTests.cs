@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 public class CorridorTests
 {
+    // Test the corridor sets the floor cells correctly
     [Test]
     public void ConnectRooms_CreatesCorridorFloors()
     {
@@ -31,6 +32,7 @@ public class CorridorTests
         Assert.That(corridorExists, Is.True);
     }
 
+    // Test the corridor sets the walls correctly
     [Test]
     public void ConnectRooms_CreatesCorridorWalls()
     {
@@ -57,6 +59,8 @@ public class CorridorTests
         Assert.That(corridorWallsExist, Is.True);
     }
 
+    // Test when connecting rooms with a corridor that they don't overlay
+    // (Can't have a corridor in a room)
     [Test]
     public void ConnectRooms_DoesNotOverwriteBoundaries()
     {
@@ -77,6 +81,8 @@ public class CorridorTests
         }
     }
 
+    // Test that an error isn't thrown if no rooms exists
+    // (Can't connect two rooms if no rooms exist)
     [Test]
     public void ConnectRooms_DoesNotThrow_WhenNoRoomsExist()
     {
@@ -85,6 +91,8 @@ public class CorridorTests
         Assert.DoesNotThrow(() => dungeon.ConnectRooms());
     }
 
+    // Test that an error isn't thrown if only 1 room exists
+    // (Can't connect two rooms if only one room exists)
     [Test]
     public void ConnectRooms_DoesNotThrow_WhenOneRoomExists()
     {

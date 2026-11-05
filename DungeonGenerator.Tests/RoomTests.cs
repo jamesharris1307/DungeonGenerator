@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 public class RoomTests
 {
+    // Test the x and y coordinates of the Room
     [Test]
     public void Constructor_SetsCorrectCoordinates()
     {
@@ -17,6 +18,7 @@ public class RoomTests
         Assert.That(y, Is.EqualTo(10));
     }
 
+    // Test the width and height of the Room
     [Test]
     public void Constructor_SetsCorrectDimensions()
     {
@@ -29,6 +31,7 @@ public class RoomTests
         Assert.That(height, Is.EqualTo(6));
     }
 
+    // Test the centre of the rooms y coordinates
     [Test]
     public void CentreX_ReturnsCorrectCentreCoordinate()
     {
@@ -39,6 +42,7 @@ public class RoomTests
         Assert.That(centreX, Is.EqualTo(9));
     }
 
+    // Test the centre of the rooms x coordinates
     [Test]
     public void CentreY_ReturnsCorrectCentreCoordinate()
     {
@@ -49,6 +53,7 @@ public class RoomTests
         Assert.That(centreY, Is.EqualTo(13));
     }
 
+    // Test the walls created correctly 
     [Test]
     public void GenerateRoom_CreatesCorrectWalls()
     {
@@ -76,6 +81,7 @@ public class RoomTests
         }
     }
 
+    // Test the floor is created as intended
     [Test]
     public void GenerateRoom_CreatesCorrectFloor()
     {

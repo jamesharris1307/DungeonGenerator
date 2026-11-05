@@ -2,7 +2,7 @@ namespace DungeonGenerator;
 
 public class DungeonRenderer
 {
-    // Convert cell types into their ASCII characters.
+    // Convert cell types into their ASCII characters
     private char GetDisplayCharacter(CellType cell)
     {
         return cell switch
@@ -17,7 +17,7 @@ public class DungeonRenderer
         };
     }
 
-    // Display the dungeon.
+    // Display the dungeon
     public void Display(Dungeon dungeon)
     {
         for (int y = 0; y < dungeon.Height; y++)
