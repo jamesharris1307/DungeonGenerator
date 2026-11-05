@@ -14,6 +14,8 @@
 
 ---
 
+### Suggestion 1: Helping with looping through multidimensional arrays
+
 I utilised ChatGPT to help me create some of the for loops when iterating
 through the 2d multidimensional array. 
 
@@ -83,6 +85,16 @@ coordinates using Math.Min() and Math.Max() to determine the horizontal path,
 then iterates through each position using a for loop. It checks whether each 
 cell is empty before assigning corridor walls and floors. The same process is 
 repeated vertically using the Y coordinates.
+
+### Suggestion 2:
+
+I utilised ChatGPT to assist in the Docker error when creating a docker image. The AI
+assistant was able to recommend a different version of the Microsoft SDK that allows the
+docker file to build.
+
+Also, there was an issue with Docker Desktop where when I created a container that didn't 
+allow input the Console.ReadLine defaulted to null and caused the main menu to just loop
+indefinetly.
 
 ## How verified AI suggestions
 

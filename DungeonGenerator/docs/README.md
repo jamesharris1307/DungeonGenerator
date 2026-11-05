@@ -3,18 +3,34 @@
 
 ---
 
+## Introduction:
+
+Please watch the roughly 4 minutes Introduction Video to get a better idea on how the 
+application works [here]()
+
 ## What I built
 
 ---
 
-For this technical assessment I have built a command-line software application that I find interesting. 
-The user is able to pick from a few options:
-- Create Dungeon
-- Place Room
-- Generate Procedural Dungeon
-- Clear Console
-- Quit Programme
+For this technical assessment I have built an ASCII Dungeon Generator. This application allows the user
+to generate a Dungeon Map and then place rooms within that map. I also implemented procedural generation 
+where the user can just specify the size of the map and the number of rooms and the dungeon and rooms 
+are created randomly. The user has a several options when interacting with this application they can:
 
+- Create a Dungeon by inputting the height and width parameters
+
+- Place a room within the dungeon by also specifying the height and width of the room 
+_(Currently this functionality is limited as the room is placed randomly within the dungeon so the user cannot actually place the room
+in an intended position)
+
+
+- Generate a procedural dungeon that requires the height and width parameter of just the 
+dungeon itself and the number of rooms to be created. (Rooms are created and placed Randomly)
+
+- Clear the console if their viewport gets cluttered with too many map designs
+
+
+- Finally, the user can quit the program 
 
 
 ## Why I built it
