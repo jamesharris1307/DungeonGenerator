@@ -37,6 +37,26 @@ official NUnit documentation [here](https://docs.nunit.org/articles/nunit/writin
 to understand test attributes and assertions, and I structured my test cases 
 using the standard Arrange, Act, Assert (AAA) pattern.
 
+### Learning How to Create a GitHub Release
+
+I wanted to learn how to create a formal release of my application on GitHub so that users could access specific versions of the software.
+
+I researched how GitHub releases work and learned that they use Git tags to identify specific versions of a project. I also researched semantic versioning and how version numbers communicate changes between releases.
+
+I needed to understand how to prepare my .NET application for distribution, so I researched the dotnet publish command. I initially looked at publishing a standard Release build using:
+
+`dotnet publish -c Release`
+
+However, I decided to use the following command instead:
+
+`dotnet publish -c Release -r win-x64 --self-contained true`
+
+This publishes the application for 64-bit Windows and includes the .NET runtime, meaning users do not need to install the .NET runtime separately to run it.
+
+I then explored GitHub's release creation process, where I learned how to select a Git tag, write release notes, specify the target branch and mark a release as a pre-release.
+
+This gave me an understanding of how to prepare, version and distribute a particular version of my application through GitHub. I used this knowledge when preparing my v0.1.0 pre-release.
+
 ---
 
 ## Resources Used
@@ -213,3 +233,4 @@ which ran successfully without producing the error. I therefore changed the SDK 
 
 
 - How to investigate problems systematically by isolating potential causes and testing alternative approaches.
+
