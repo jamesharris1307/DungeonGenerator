@@ -18,7 +18,7 @@ the if statement to a switch statement and read about it in the docs [here](http
 I needed to learn how to exit the console after the user presses the quit option and I found
 the syntax I needed to implement on stack overflow [here](https://stackoverflow.com/questions/10286056/what-is-the-command-to-exit-a-console-application-in-c).
 
-Learnt about primary constructors when implementing the room propteris and constructor logic, 
+Learnt about primary constructors when implementing the room properties and constructor logic, 
 read about them [here](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors).
 
 Decided to implement the symbol rendering logic using an enum, came across a
@@ -27,9 +27,15 @@ better to define the symbols reference in an enum and then create a renderer
 class in order to render the dungeon Researched enums in c# 
 [here](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum).
 
-Needed to learn about Unit Testing in C#
-- AAA pattern
-- Using Nunit 
+I needed to learn how to implement unit testing in C# and .NET to ensure that 
+core features like room placement limits, grid boundary checks, and 
+collision detection worked correctly. While ChatGPT initially recommended 
+XUnit, I noticed during setup in JetBrains Rider that the IDE offered a 
+native test project template pre-configured with NUnit. To keep project 
+dependencies simple, I chose to use NUnit instead. I used the 
+official NUnit documentation [here](https://docs.nunit.org/articles/nunit/writing-tests/ordinary-tests.html) 
+to understand test attributes and assertions, and I structured my test cases 
+using the standard Arrange, Act, Assert (AAA) pattern.
 
 ---
 
@@ -42,6 +48,18 @@ The following resources were used to support my research and development:
 - [w3schools](https://www.w3schools.com/cs/cs_arrays_multi.php)
 - [StackOverflow](https://stackoverflow.com)
 - [Git](https://git-scm.com)
+- [NUnit](https://nunit.org)
+
+---
+
+### How I Approached Research
+
+When researching unfamiliar concepts, I prioritised official documentation where possible, particularly Microsoft 
+Learn for C# and .NET features and the NUnit documentation for unit testing. I used these resources to understand how 
+features worked and how they should be implemented. I also used resources like as W3Schools, GeeksforGeeks 
+and Stack Overflow as shown above when I needed alternative explanations or examples. Where possible, I compared 
+suggestions by ChatGPT to official documentation and tested implementations within my own project to confirm that 
+they worked as expected.
 
 ---
 
@@ -83,6 +101,8 @@ while `#` represented the outer boundaries. This gave each part of the dungeon a
 - ` ` – Unoccupied dungeon space.
 - `.` – Room floor.
 
+---
+
 ### Problem 3: Terminal Display Limitations When Rendering Large Dungeons
 
 While testing larger dungeon dimensions, I increased the map size to 200 columns by 100 rows. Although the dungeon 
@@ -91,6 +111,8 @@ the output to wrap onto additional lines, making the dungeon difficult to read a
 I identified that this was a limitation of the terminal's display area rather than an issue with the dungeon generation 
 logic. The application was still generating the correct 2D array it's just the terminal couldn't display it without wrapping.
 
+---
+
 ### Problem 4: Preventing Corridors from Overwriting Existing Rooms
 
 During the implementation of corridor generation, I encountered an issue where corridors would overwrite sections of 
@@ -98,6 +120,8 @@ previously generated rooms. My initial implementation modified the dungeon grid 
 and floors (.) into existing cells. To address this, I introduced checks to ensure that corridor sections were only placed 
 in empty cells. However, this introduced another issue that being corridors could become partially generated when they 
 encountered occupied cells. 
+
+---
 
 ### Problem 5: Distinguishing Between Different Types of Dungeon Cells
 
@@ -118,6 +142,8 @@ This allowed me to represent different cell types independently of their display
 I also introduced a rendering method that converts each cell type into its corresponding ASCII character. This way I can implement a 
 feature in the future where the user can configure the rendering method to display custom symbols if desired.
 
+---
+
 ### Problem 6: Handling Invalid User Input
 
 During testing, I encountered an application crash when an empty input was entered at the main menu.
@@ -134,6 +160,8 @@ The issue occurred because Convert.ToInt32() attempted to convert an empty strin
 I found int.TryParse() as an alternative [here](https://learn.microsoft.com/en-us/dotnet/api/system.int32.tryparse?view=net-10.0).
 This method allows the application to check whether user input can be converted successfully before processing it.
 I implemented this fix everywhere where appropriate 
+
+---
 
 ### Problem 7: Resolving a .NET SDK Error During Docker Builds
 
@@ -154,5 +182,34 @@ which ran successfully without producing the error. I therefore changed the SDK 
 
 ## What I Learned
 
-- How Git tracks files and directories.
-- The difference between removing a file locally and removing it from Git tracking.
+- Throughout the development of this project, I gained experience with several C# and software development concepts:
+
+
+- How Git tracks files and directories, including the difference between removing a file locally and removing it from Git tracking.
+
+
+- How multidimensional arrays can represent a two-dimensional grid and store information about individual dungeon cells.
+
+
+- How enums can represent different cell types independently of their displayed characters.
+
+
+- How separating rendering logic from dungeon data improves code organisation and maintainability.
+
+
+- The differences between if statements and switch statements when implementing conditional logic.
+
+
+- How primary constructors can simplify constructor declarations in C#.
+
+
+- How int.TryParse() can be used to validate user input and prevent conversion exceptions.
+
+
+- How NUnit can be used to create automated unit tests and verify individual components of an application.
+
+
+- How Docker uses SDK images to provide a consistent build environment and how different SDK versions can affect application builds.
+
+
+- How to investigate problems systematically by isolating potential causes and testing alternative approaches.
