@@ -17,31 +17,7 @@
 ### Suggestion 1: Helping with looping through multidimensional arrays
 
 I utilised ChatGPT to help me create some of the for loops when iterating
-through the 2d multidimensional array. 
-
-```
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                if (y == 0 || y == height - 1 ||
-                    x == 0 || x == width - 1)
-                {
-                    _map[y, x] = CellType.Boundary;
-                }
-                else
-                {
-                    _map[y, x] = CellType.Empty;
-                }
-            }
-        }
-```
-
-The code above first iterates through rows and then the nested for loop
-iterates through the columns. A boundary detection is done to check if the 
-current cell is positioned along the outer edge of the dungeon. If the cell
-is on the outer edge it is assigned boundary otherwise its assigned empty.
-
+through the two-dimensional array.
 
 These types of for loops can be confusing when implementing and ChatGPT was
 helpful in simplifying that process. The corridor logic was particully 
